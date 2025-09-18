@@ -50,7 +50,7 @@ int main() {
 
     return 0;
 }
-
+ 
 /* Note
 dup(): returns the lowest available file descriptor. 
 
