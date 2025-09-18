@@ -15,6 +15,10 @@ Date: 3rd Sep, 2025.
 
 int main() {
     int fd1 = open("dummy11.txt", O_WRONLY | O_CREAT | O_APPEND, 0666);
+    // owner, group, others
+    // 4 read
+    // 2 write
+    // 1 execute
     if (fd1 == -1) {
         perror("open");
         return 1;

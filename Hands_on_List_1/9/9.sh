@@ -17,6 +17,8 @@
 # ==========================================================================
 # */
 
+# Code executed in Mac Operating System
+
 # (a)
 # --> INODE
 # display the inode number followed by the file name

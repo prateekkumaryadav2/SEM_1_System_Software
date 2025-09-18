@@ -10,13 +10,14 @@ Date: 3rd Sep, 2025.
 #include <stdio.h>
 
 int main() {
+    // pointer to the file
     FILE *fileptr = fopen("dummy_file.txt", "r");
     if (fileptr == NULL) {
         perror("fopen");
         return 1;
     }
     char buffer[512];
-    // fgets to read each line
+    // fgets to read each line, and keeps each line in buffer before printing
     while (fgets(buffer, sizeof(buffer), fileptr) != NULL) {
         printf("%s", buffer);
     }

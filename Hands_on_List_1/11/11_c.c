@@ -51,6 +51,14 @@ int main() {
     return 0;
 }
 
+/* Note
+dup(): returns the lowest available file descriptor. 
+
+dup2(): lets you specify the exact file descriptor number to use
+
+fcntl(): with F_DUPFD lets you specify a minimum value for the new file descriptor.
+*/
+
 /*
 ==========================================================================
 Output : 

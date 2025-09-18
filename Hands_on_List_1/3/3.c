@@ -13,6 +13,7 @@ Date: 3rd Sep, 2025.
 
 int main(void) {
 	int fd = creat("myfile.txt", 0666);
+// The primary purpose of creat() is to create a new file with the specified name. If a file with that name already exists, its contents are truncated, meaning they are erased to zero length
 	if (fd == -1) perror("creat");
 	printf("File 'myfile.txt' created with file descriptor: %d\n", fd);
 	close(fd);

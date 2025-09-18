@@ -14,9 +14,12 @@ int main() {
     ssize_t bytesRead;
 
     // Read from STDIN (file descriptor 0)
+    // reading input from command line and storing inside the buffer
+    // 0 means STDIN i.e. FD=0
     bytesRead = read(0, buffer, sizeof(buffer));
     if (bytesRead > 0) {
         // Write to STDOUT (file descriptor 1)
+        // 1 means STDOUT i.e. FD=1
         write(1, buffer, bytesRead);
     }
 
