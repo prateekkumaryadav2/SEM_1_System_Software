@@ -21,6 +21,7 @@ int main() {
     }else if(pid > 0){
         printf("Parent: Child created with PID %d\n", pid);
         exit(EXIT_SUCCESS); 
+        // parent exits intentionally
     }else{
         // setsid() transforms the child process from a regular process into a true daemon that can run independently in the background, checking time every 25 seconds without being affected by terminal operations
         if(setsid() < 0){
@@ -31,12 +32,14 @@ int main() {
         while (1) {
             time_t cur_time = time(NULL);
             struct tm *t = localtime(&cur_time);
+        // has set the time for 1:01 PM
             if (t->tm_hour == 13 && t->tm_min == 01) {
-                printf("Child => OPEN DAEMON PROCESS...\n");
+                printf("DAEMON PROCESS...\n");
+                // flash the alert message onto the terminal
                 system("sudo ./alert.sh");
                 break;
             }
-            // check every 25s has time arrived
+            // for every 25s it checks whether it's time to run
             sleep(25);
         }
     }
@@ -53,7 +56,7 @@ Output :
             prateek@prateek-QEMU-Virtual-Machine:~/Desktop/ss/daemon$ ./a.out
             Parent: Child created with PID 3696
             Child process is Running as a daemon with PID 3696
-            prateek@prateek-QEMU-Virtual-Machine:~/Desktop/ss/daemon$ Child => OPEN DAEMON PROCESS...
+            prateek@prateek-QEMU-Virtual-Machine:~/Desktop/ss/daemon$ DAEMON PROCESS...
             hey there
 ==========================================================================
 */
