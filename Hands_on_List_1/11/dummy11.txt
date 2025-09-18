@@ -1,0 +1,6 @@
+Written using fd1
+Written using fd2
+Written using fd1 (using dup2)
+Written using fd2 (using dup2)
+Written using fd1 (using fcntl)
+Written using fd2 (using fcntl)

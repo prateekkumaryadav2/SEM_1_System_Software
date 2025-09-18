@@ -1,0 +1,2 @@
+hey there
+content for dummy12.txt

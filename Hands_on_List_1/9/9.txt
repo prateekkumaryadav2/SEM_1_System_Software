@@ -1,0 +1,22 @@
+Q 1) is no of hardlinks by default 1?
+
+Yes, the number of hard links for a newly created regular file is 1 by default.
+
+This means only the file itself points to its inode.
+If you create additional hard links, this number increases.
+For directories, the count is usually 2 or more (for . and its parent’s ..).
+So, for a new file, the hard link count is 1.
+
+Q 2) use of ls -n ?
+
+The ls -n command lists files in long format and shows numeric user and group IDs instead of their names.
+
+- The -n option is similar to -l, but displays UID and GID as numbers.
+- Useful for seeing the actual user and group IDs, not just their names.
+
+# terminal snap ->
+prateek@Prateek-Kumar 9 % ls -l dummy.txt      
+-rw-r--r--@ 2 prateek  staff  63 Aug 15 14:42 dummy.txt
+prateek@Prateek-Kumar 9 % ls -n dummy.txt       
+-rw-r--r--@ 2 501  20  63 Aug 15 14:42 dummy.txt
+
