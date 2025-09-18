@@ -19,12 +19,29 @@ int main() {
         return 1;
     }
 
-    struct flock lock;
     // Declares a flock structure to specify the lock details.
-    lock.l_type = F_WRLCK;    // Write lock(exclusive lock)
-    lock.l_whence = SEEK_SET; // From the beginning of the file
-    lock.l_start = 0;         // Start of the lock
-    lock.l_len = 0;           // Lock the whole file
+    struct flock lock;
+    // Write lock(exclusive lock)
+    lock.l_type = F_WRLCK;    
+    
+    // set lock from the beginning of the file
+    // whence means "from where" or "from what place"
+    // like our refrence point or starting location
+    lock.l_whence = SEEK_SET; 
+    // SEEK_SET = "Set position from start"
+    
+    /*
+    --> SEEK_SET = "from the beginning" (whence = start of file)
+    --> SEEK_CUR = "from the current position" (whence = current file pointer)
+    --> SEEK_END = "from the end" (whence = end of file)
+    */
+
+    // Start of the lock from the 0th byte of the file, which is nothing but our starting of file
+    lock.l_start = 0;
+
+
+    // Lock the file 0 bytes from last which also means lock whole file
+    lock.l_len = 0;           
 
     printf("Trying to acquire write lock...\n");
     if (fcntl(fd, F_SETLK, &lock) == -1) {

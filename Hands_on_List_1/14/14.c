@@ -19,10 +19,16 @@ int main(int argc, char *argv[]) {
     }
 
     struct stat fileStat;
-    if (stat(argv[1], &fileStat) < 0) {
+    if (lstat(argv[1], &fileStat) < 0) {
         perror("stat");
         return 1;
     }
+    
+    /* Note
+    stat() - follows symbolic links (dereferences them)
+    
+    lstat() - does NOT follow symbolic links (examines the link itself)
+    */
 
     if (S_ISREG(fileStat.st_mode))
         printf("Regular file\n");

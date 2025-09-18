@@ -12,20 +12,26 @@ Date: 3rd Sep, 2025.
 #include <unistd.h>
 #include <string.h>
 
+// intialization is happening here
+
 int main() {
     char buffer[25];
-    // intitial ticket numberr
+    // setting the initial ticket number/count
     int initial_ticket = 501;
     
+    // opeing the file in write only mode as we just want to start the counter out there, if that file exists clear it if not exist it will create one
     int fd = open("ticket.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
     if (fd == -1) {
         perror("open");
         return 1;
     }
     
-    // Convert integer to string to store into 
-    // file as a human readable text
+    // sprintf() = String Print Formatted
+    // Convert integer to a string type for storing the into 
+    // file as a human readable text because c program will store it in raw form not conviniet for human viewing
     sprintf(buffer, "%d\n", initial_ticket);
+
+    // write the initial value
     write(fd, buffer, strlen(buffer));
     
     printf("Ticketing system initialized with counter = %d number\n", initial_ticket);

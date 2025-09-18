@@ -24,6 +24,7 @@ int main() {
 /*
 ==========================================================================
 Output : 
+--> in MacOS
           prateek@Prateek-Kumar 28 % cc 28.c
           prateek@Prateek-Kumar 28 % ./a.out
           For FIFO

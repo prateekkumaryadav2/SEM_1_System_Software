@@ -15,6 +15,7 @@ Date: 2nd Sep, 2025.
 /*
 ==========================================================================
 rdtsc is supported by x86/x64 architecture assembly instructions,
+
 clock_gettime() is equivalent operator on ARM architecture instead of TSC
 ==========================================================================
 */

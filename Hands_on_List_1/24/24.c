@@ -33,6 +33,7 @@ int main() {
   }
   else {  // Parent process
     printf("Parent with PID = %d, created a child process with PID = %d\n", getpid(), pid);
+    // here parent is not waiting for child's exit code and exists first making child orphan
 
     // Parent exits before child - creates orphan
     exit(0);  

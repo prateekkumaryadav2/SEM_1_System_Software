@@ -16,6 +16,7 @@ Date: 3rd Sep, 2025.
 int main() {
   printf("Executing 'ls -rl'\n");
   // Using execl to execute ls -rl
+  // Showing files in long listing format (detailed info) in reverse order(Z-->A).
   // null at the end helps to let execl know to stop reading arguments here
   execl("/bin/ls", "ls", "-rl", NULL);
   // This line will only be execute if execl fails

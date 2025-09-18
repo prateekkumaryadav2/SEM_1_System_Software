@@ -35,6 +35,7 @@ int main() {
       close(fd);
       return 1;
     }
+    // waiting for child to exit first
     wait(NULL);
   }
   close(fd);

@@ -24,24 +24,29 @@ int main() {
         return 1;
     }
     
-    // Setting up write lock
+    // Setting up a write lock 
+    // we are applying a whole file lock as we are just storing the ticket count number, so that will do our job
     lock.l_type = F_WRLCK;
     lock.l_whence = SEEK_SET;
     lock.l_start = 0;
     lock.l_len = 0;
     
+    // setting lock
     fcntl(fd, F_SETLKW, &lock);
     
     printf("Acquiring ticket for you\n");
 
     // Reading curr ticket number as text
+    // 0 indicating move 0 bytes from the current reference point
     lseek(fd, 0, SEEK_SET);
+    
+    // -1 for space of null terminator '\0'
     int bytes_read = read(fd, buffer, sizeof(buffer) - 1);
     buffer[bytes_read] = '\0';
     
-    // we can avoid convertion by storing binary(raw) notations inside the file
+    // we can avoid convertion by storing binary(raw) notations inside the file, but this string way is more human readable
 
-    // Converting ticket number from string to integer
+    // Converting ticket number from string to integer for incrementing purpose
     ticket_number = atoi(buffer);
     printf("Current ticket number is %d\n", ticket_number);
     
@@ -50,7 +55,7 @@ int main() {
     sprintf(buffer, "%d\n", ticket_number);
     
     lseek(fd, 0, SEEK_SET);
-    // Clear file
+    // Clear file and now re-write the new value
     ftruncate(fd, 0);  
     write(fd, buffer, strlen(buffer));
     

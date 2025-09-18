@@ -13,6 +13,48 @@ Date: 2nd Sep, 2025.
 #include <sys/resource.h>
 #include <errno.h>
 
+/*
+In Linux, the priority of a running program is determined by two main values: the nice value and the real-time priority. 
+
+Checking the priority of a running program using
+
+--> Using top
+The top command provides a real-time, dynamic view of a system's running processes. In the output, you should look for two columns:
+
+PR (Priority): This column displays the actual scheduling priority of the process. A lower number indicates a higher priority.
+
+NI (Nice Value): This column shows the process's nice value. The nice value is a user-adjustable number that influences the priority.
+
+The relationship between the nice value and the PR value for normal, non-real-time processes is typically PR = 20 + NI.
+
+--> Using ps
+The ps command provides a snapshot of the current processes. To view the priority and nice value, you can use the following command:
+
+ps -o pid,ni,pr,comm
+
+This command will output a list of processes with their Process ID (PID), Nice Value (NI), Priority (PR), and command name.
+*/ 
+// ==============================
+/*
+-->Nice Value
+The nice value is a number that ranges from -20 to 19.
+
+A nice value of -20 is the highest possible priority.
+
+A nice value of 19 is the lowest priority.
+
+The default nice value is 0.
+
+A process with a lower nice value receives a larger time slice, meaning it gets more CPU time than processes with a higher nice value.
+
+-->Real-time Priority
+Linux also supports real-time scheduling priorities, which are separate from nice values. 
+
+By default, real-time priority ranges from 0 to 99. 
+
+A process with a real-time priority will always have a higher priority than any normal, non-real-time process, regardless of its nice value.
+*/
+
 int main() {
   pid_t pid = getpid();
   int current_priority, new_priority;

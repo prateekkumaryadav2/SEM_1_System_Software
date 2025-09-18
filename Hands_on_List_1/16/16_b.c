@@ -20,10 +20,14 @@ int main() {
     }
 
     struct flock lock;
-    lock.l_type = F_RDLCK;    // Read lock (shared lock)
-    lock.l_whence = SEEK_SET; // From the beginning of the file
-    lock.l_start = 0;         // Start of the lock
-    lock.l_len = 0;           // Lock the whole file
+    // Read lock (shared lock)
+    lock.l_type = F_RDLCK;    
+    // From the beginning of the file
+    lock.l_whence = SEEK_SET; 
+    // Start of the lock
+    lock.l_start = 0;         
+    // Lock the whole file
+    lock.l_len = 0;           
 
     printf("Trying to acquire read lock...\n");
     if (fcntl(fd, F_SETLK, &lock) == -1) {

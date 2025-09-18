@@ -22,6 +22,7 @@ int main() {
 
     // Set up the timeout: 10 seconds
     timeout.tv_sec = 10;
+    // need to set both
     timeout.tv_usec = 0;
 
     printf("Waiting for input on STDIN for up to 10 seconds...\n");
